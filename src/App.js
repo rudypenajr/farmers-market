@@ -1,23 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Header from './components/header/header'
+import Shop from './components/shop/shop'
+import Loading from './components/loading/loading'
+import data from './data'
 import './App.css';
 
-import Header from './components/header/header.js'
-
 class App extends Component {
-  
+  constructor() {
+    super()
+    this.state = {
+      products: [],
+      cart: [],
+      totalItems: 0,
+      totalAmount: 0, 
+      // cartBounce: false,
+      quantity : 0,
+    }
+  }
+
+  componentDidMount() {
+    // mimic fetching api
+    const self = this
+    setTimeout(() => {
+      self.setState({
+        products: data
+      })
+    }, 1000)
+  }
 
   render() {
     return (
       <div className="App">
-        <Header />
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header> */}
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Header {...this.state} />
+        {this.state.products.length === 0 ? <Loading /> : <Shop {...this.state} />}
       </div>
     );
   }

@@ -1,0 +1,19 @@
+.app__header {
+    background-color: #222;
+    color: white;
+    display: flex;
+    
+    height: 150px;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 960px;
+    padding: 20px;
+  }
+
+.app__header h1 {
+    text-align: left;
+}
+
+.app__header .app__mini-cart {
+    color: #fff;
+}
