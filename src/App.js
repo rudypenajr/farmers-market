@@ -3,6 +3,7 @@ import Header from './components/header/header'
 import Shop from './components/shop/shop'
 import Loading from './components/loading/loading'
 import Alert from './components/alert/alert'
+import CheckOutButton from './components/buttons/checkout'
 
 import data from './data'
 
@@ -17,7 +18,8 @@ class App extends Component {
       totalItems: 0,
       totalAmount: 0.00, 
       quantity : 0,
-      alert: ''
+      alert: '',
+
     }
 
     this.updateQuantity = this.updateQuantity.bind(this)
@@ -51,6 +53,7 @@ class App extends Component {
   }
 
   handleAddToCart(product) {
+    console.log(product)
     const id = product.id
     
     // Update Cart
@@ -64,11 +67,34 @@ class App extends Component {
     let totalItems = 0
     let totalAmount = 0
     cart.forEach((p) => {
+      if (p.amount === 0) {
+        return
+      }
+      
       // No. of Items
       totalItems += p.amount
 
+      let subQuantity = 0
+      let subTotal = 0
+      let promoQuantity = 0
+      let promoTotal = 0
+      let price = p.price
+      
+      if (p.promo && p.promo.limit && p.amount >= p.promo.limit) {
+        subQuantity = p.promo.limit
+        subTotal = subQuantity * p.price
+        
+        promoQuantity = p.amount - p.promo.limit
+        promoTotal = promoQuantity * p.promo.price
+        // console.log(subQuantity, subTotal, promoQuantity, promoTotal)
+      } else {
+        subQuantity = p.price
+        subTotal = subQuantity * p.price
+      }
+
       // Sub Total
-      totalAmount += (p.amount * p.price)
+      // console.log(subTotal, promoTotal, subTotal + promoTotal)
+      totalAmount = subTotal + promoTotal
     })
 
     this.setState({
@@ -106,6 +132,7 @@ class App extends Component {
             displayAlert={this.displayAlert}
           />
         }
+        {/* <CheckOutButton {...this.state} /> */}
       </div>
     );
   }

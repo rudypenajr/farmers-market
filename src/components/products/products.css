@@ -85,5 +85,10 @@
   color: #fff;
   font-size: 14px;
   padding: 10px;
+  opacity: 1;
   width: 100%;
+}
+
+.product__action button:disabled {
+  opacity: 0.5;
 }

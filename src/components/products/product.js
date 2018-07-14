@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import Counter from '../counter/counter'
+import Button from '../buttons/product'
 
 import './products.css';
 
 class Product extends Component {
   constructor(props) {
     super(props)
-
-    this._handleAddToCart = this._handleAddToCart.bind(this)
-  }
-
-  _handleAddToCart(e) {
-    e.preventDefault()
-    this.props.handleAddToCart(this.props)
   }
 
   render() {
@@ -27,9 +21,7 @@ class Product extends Component {
           updateQuantity={this.props.updateQuantity}
           displayAlert={this.props.displayAlert}
         />
-        <div className="product__action">
-          <button type="button" onClick={this._handleAddToCart}>Add To Cart</button>
-        </div>
+        <Button {...this.props} />
       </li>
     )
   }
