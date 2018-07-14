@@ -9,7 +9,8 @@ import {
   handleUpdateToTotalItems,
   handleUpdateToAlert, 
   getSelectedProduct,
-  handleUpdateToSubTotal
+  handleUpdateToSubTotal,
+  handleUpdateToProducts
 } from './helpers/helpers'
 
 import data from './data'
@@ -47,34 +48,34 @@ class App extends Component {
       })
       
       self.setState({
-        products: data,
-        cart: initialCart
+        products: initialCart
+        // cart: initialCart
       })
     }, 1000)
   }
 
-  updateQuantity(qty){
+  updateQuantity(id, qty){
+    let products = handleUpdateToProducts(this.state.products, id, qty)
+
     this.setState({
-      quantity: qty
+      products: products
     })
   }
 
-  // Helper Functions of Sorts
-
-  // END: Helper Functions of Sorts
-
   handleAddToCart(product) {
-    // Update Current Cart Item Quantity for Product
-    const cart = handleUpdateToCart(this.state.cart, product.id, product.quantity)
-
     // Get Selected product
-    const selected = getSelectedProduct(cart, product.id)
+    const selected = getSelectedProduct(this.state.products, product.id)
+    console.log('selected: ', selected)
+
+    // Update Current Cart Item Quantity for Product
+    // const cart = handleUpdateToCart(this.state.cart, product.id, product.quantity)
+    // console.log('cart: ', cart)
 
     // Update Total Amounts
-    const totalAmount = handleUpdateToSubTotal(selected)
+    // const totalAmount = handleUpdateToSubTotal(selected)
     
     // Update Total Items
-    const totalItems = handleUpdateToTotalItems(cart)
+    // const totalItems = handleUpdateToTotalItems(cart)
  
     // Update Alert
     // const alert = handleUpdateToAlert(cart.ccItem, this.state.alert)
@@ -82,9 +83,9 @@ class App extends Component {
 
     this.setState({
       // alert: alert,
-      cart: cart,
-      totalItems: totalItems,
-      totalAmount: (totalAmount).toFixed(2)
+      // cart: cart
+      // totalItems: totalItems,
+      // totalAmount: (totalAmount).toFixed(2)
     })
   }
 

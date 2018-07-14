@@ -4,8 +4,12 @@ export const getSelectedProduct = (cart, id) => {
 }
 
 // Check
-export const handleUpdateToCart = (cart, id, quantity) => {
-  return [...cart].map(obj => {
+// export const handleUpdateToCart = (cart, product) => {
+//   return [...cart, product]
+// }
+// export const handleUpdateToCart = (cart, id, quantity) => {
+export const handleUpdateToProducts = (products, id, quantity) => {
+  return [...products].map(obj => {
     if (obj.id === id) {
       obj.quantity = quantity
       return obj
@@ -14,7 +18,6 @@ export const handleUpdateToCart = (cart, id, quantity) => {
     return obj
   })
 }
-
 
 export const handleUpdateToSubTotal = (selected) => {
   // Check Current Amount vs. Promo Limit
