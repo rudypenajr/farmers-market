@@ -19,7 +19,7 @@ const data = [
       limit: 3,
       price: 4.50
     },
-    alert: 'If you buy 3 or more bags of Apples, the price drops to $4.50.'
+    alert: 'APPL -- If you buy 3 or more bags of Apples, the price drops to $4.50.'
   },
   { 
     id: 'CF1',
@@ -41,9 +41,12 @@ const data = [
     id: 'OM1',
     name: 'Oatmeal',
     price: 3.69,
-    promo: '',
-    dependent: 'AP1',
-    alert: 'Purchase a bag of Oatmeal and get 50% off a bag of Apples'
+    promo: {
+      dependent: 'AP1',
+      limit: 1,
+      price: 3.00
+    },
+    alert: 'APOM -- Purchase a bag of Oatmeal and get 50% off a bag of Apples'
   }
 ]
 

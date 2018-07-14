@@ -12,7 +12,6 @@ class Alert extends Component {
 
   render() {
     const { alert } = this.props
-    console.log('alert: ', alert)
     return (
       <div className="app__alert">
         {alert.length > 0 && <p>{alert}</p>}

@@ -4,9 +4,15 @@ import Shop from './components/shop/shop'
 import Loading from './components/loading/loading'
 import Alert from './components/alert/alert'
 import CheckOutButton from './components/buttons/checkout'
+import { 
+  handleUpdateToCart, 
+  handleUpdateToTotalItems,
+  handleUpdateToAlert, 
+  getSelectedProduct,
+  handleUpdateToSubTotal
+} from './helpers/helpers'
 
 import data from './data'
-
 import './App.css';
 
 class App extends Component {
@@ -15,6 +21,7 @@ class App extends Component {
     this.state = {
       products: [], // a.k.a inventory
       cart: [], // application state
+      activeProduct: {},
       totalItems: 0,
       totalAmount: 0.00, 
       quantity : 0,
@@ -35,7 +42,7 @@ class App extends Component {
       data.forEach((o) => {
         initialCart.push({
           ...o,
-          amount: 0
+          quantity: 0
         })
       })
       
@@ -52,55 +59,32 @@ class App extends Component {
     })
   }
 
+  // Helper Functions of Sorts
+
+  // END: Helper Functions of Sorts
+
   handleAddToCart(product) {
-    console.log(product)
-    const id = product.id
-    
-    // Update Cart
-    let cart = [...this.state.cart]
-    let currentCartItem = cart.find(obj => obj.id === id)
-    if (currentCartItem) {
-      currentCartItem.amount = product.quantity
-    }
-    
-    // Update No. of Items & Sub Total
-    let totalItems = 0
-    let totalAmount = 0
-    cart.forEach((p) => {
-      if (p.amount === 0) {
-        return
-      }
-      
-      // No. of Items
-      totalItems += p.amount
+    // Update Current Cart Item Quantity for Product
+    const cart = handleUpdateToCart(this.state.cart, product.id, product.quantity)
 
-      let subQuantity = 0
-      let subTotal = 0
-      let promoQuantity = 0
-      let promoTotal = 0
-      let price = p.price
-      
-      if (p.promo && p.promo.limit && p.amount >= p.promo.limit) {
-        subQuantity = p.promo.limit
-        subTotal = subQuantity * p.price
-        
-        promoQuantity = p.amount - p.promo.limit
-        promoTotal = promoQuantity * p.promo.price
-        // console.log(subQuantity, subTotal, promoQuantity, promoTotal)
-      } else {
-        subQuantity = p.price
-        subTotal = subQuantity * p.price
-      }
+    // Get Selected product
+    const selected = getSelectedProduct(cart, product.id)
 
-      // Sub Total
-      // console.log(subTotal, promoTotal, subTotal + promoTotal)
-      totalAmount = subTotal + promoTotal
-    })
+    // Update Total Amounts
+    const totalAmount = handleUpdateToSubTotal(selected)
+    
+    // Update Total Items
+    const totalItems = handleUpdateToTotalItems(cart)
+ 
+    // Update Alert
+    // const alert = handleUpdateToAlert(cart.ccItem, this.state.alert)
+    // console.log('updating alert... ', alert)
 
     this.setState({
+      // alert: alert,
+      cart: cart,
       totalItems: totalItems,
-      totalAmount: (totalAmount).toFixed(2),
-      cart: cart
+      totalAmount: (totalAmount).toFixed(2)
     })
   }
 
@@ -109,7 +93,6 @@ class App extends Component {
     const currentItem = this.state.products.find(obj => obj.id === id)
     
     if (currentItem.alert && currentItem.alert.length > 0) {
-      console.log('current: ', currentItem)
       this.setState({
         alert: currentItem.alert
       })
@@ -122,7 +105,7 @@ class App extends Component {
         <Header
           {...this.state} 
         />
-        <Alert {...this.state} />
+        {/* <Alert {...this.state} /> */}
         {this.state.products.length === 0 ? 
           <Loading /> : 
           <Shop 

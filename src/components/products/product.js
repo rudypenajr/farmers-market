@@ -5,10 +5,6 @@ import Button from '../buttons/product'
 import './products.css';
 
 class Product extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <li key={this.props.key} id={this.props.id}>
