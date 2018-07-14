@@ -4,7 +4,6 @@ import './shop.css';
 
 class Shop extends Component {
   render() {
-    console.log(this.props)
     return (
       <div className="shop__container">
         <Products {...this.props} />

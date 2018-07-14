@@ -3,15 +3,28 @@ import Product from './product'
 import './products.css';
 
 class Products extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-  renderItems(products, quantity) {
+  renderItems(props) {
+    const { 
+      products, 
+      quantity, 
+      handleAddToCart,
+      displayAlert 
+    } = this.props
     let list = []
+
     products.map((p, ix)=> {
-      list.push(
-        <Product key={ix} name={p.name} image={p.image} quantity={quantity} />
+      return list.push(
+        <Product 
+          key={ix}
+          id={p.id} 
+          name={p.name} 
+          image={p.image}
+          price={p.price}
+          quantity={quantity} 
+          updateQuantity={this.props.updateQuantity}
+          handleAddToCart={handleAddToCart}
+          displayAlert={displayAlert}
+        />
       )
     })
 
@@ -19,8 +32,9 @@ class Products extends Component {
   }
 
   render() {
-    const { products, quantity } = this.props
-    const list = this.renderItems(products, quantity)
+    // const { products, quantity, handleAddToCart } = this.props
+    // const list = this.renderItems(products, quantity, handleAddToCart)
+    const list = this.renderItems(this.props)
     
     return (
       <div className="shop__products">

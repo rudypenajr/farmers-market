@@ -1,7 +1,7 @@
 .shop__products {
   display: block;
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 998px;
 }
 
 .shop__products ul,
@@ -13,32 +13,51 @@
 
 .shop__products ul {
   display: flex;
+  margin-top: 20px;
 }
 
 .shop__products li {
   border: 1px solid #000;
-  margin: 16px;
+  border-radius: 5px;
+  box-shadow: 5px 10px #cccccc;
+  margin: 0 16px 16px 16px;
   min-height: 100px;
-  padding: 10px;
+  padding: 40px 10px;
   text-align: left;
   width: calc(25% - 32px)
+}
+
+.shop__products li:first-child {
+  margin-left: 0;
+}
+
+.shop__products li:last-child {
+  margin-right: 0;
+}
+
+.product__detail {
+  text-align: center;
+}
+
+.product__detail p {
+  margin-top: 0;
 }
 
 .product__input {
   color: #666;
   display: flex;
-  margin: 0 auto;
+  margin: 30px auto 0;
+  justify-content: center;
 }
-
 
 .product__input .quantity {
   border: 1px solid #ccc;
+  font-size: 14px;
   height: 24px;
   margin: 0 12px;
   text-align: center;
   width: 48px;
 }
-
 
 .product__input .decrement,
 .product__input .increment {
@@ -52,4 +71,19 @@
   text-align: center;
   text-decoration: none;
   width: 24px;
+}
+
+.product__action {
+  margin: 30px 0 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.product__action button {
+  background: rgba(0, 78, 0, 0.8);;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px;
+  width: 100%;
 }

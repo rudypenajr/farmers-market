@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Product from './product'
-import './products.css';
+import PropTypes from 'prop-types';
 
 class Counter extends Component {
   constructor(props) {
@@ -16,9 +15,13 @@ class Counter extends Component {
     e.preventDefault()
     
     let update = this.state.quantity + 1
-    this.setState({
+
+    this.setState(prevState => ({
       quantity: update
-    })
+    }), function(){
+      this.props.updateQuantity(this.state.quantity);
+      this.props.displayAlert(this.props)
+    });
   }
 
   decrement(e) {
@@ -27,7 +30,7 @@ class Counter extends Component {
     if (this.state.quantity === 0) {
       return
     }
-    
+
     let update = this.state.quantity - 1
     this.setState({
       quantity: update
@@ -35,7 +38,6 @@ class Counter extends Component {
   }
 
   render() {
-    // console.log('conuter:', this.props)
     return (
       <div className="product__input">
         <a href="#" className="decrement" onClick={this.decrement}>–</a>
@@ -45,5 +47,9 @@ class Counter extends Component {
     )
   }
 }
+
+Counter.propTypes = {
+  quantity: PropTypes.number
+};
 
 export default Counter
