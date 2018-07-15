@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import Header from './components/header/header'
 import Shop from './components/shop/shop'
 import Loading from './components/loading/loading'
-import Alert from './components/alert/alert'
-import CheckOutButton from './components/buttons/checkout'
+// import Alert from './components/alert/alert'
+// import CheckOutButton from './components/buttons/checkout'
 import { 
-  handleUpdateToCart, 
+  getSelectedProduct,
+  handleUpdateToProducts,
+  handleUpdateToCart,
+  handleUpToTotalCost,
   handleUpdateToTotalItems,
   handleUpdateToAlert, 
-  getSelectedProduct,
-  handleUpdateToSubTotal,
-  handleUpdateToProducts
-} from './helpers/helpers'
+} from './helpers'
 
 import data from './data'
+import cart from './data/cart'
 import './App.css';
 
 class App extends Component {
@@ -21,13 +22,12 @@ class App extends Component {
     super()
     this.state = {
       products: [], // a.k.a inventory
-      cart: [], // application state
+      cart: cart, // application state
       activeProduct: {},
       totalItems: 0,
       totalAmount: 0.00, 
       quantity : 0,
       alert: '',
-
     }
 
     this.updateQuantity = this.updateQuantity.bind(this)
@@ -65,27 +65,26 @@ class App extends Component {
   handleAddToCart(product) {
     // Get Selected product
     const selected = getSelectedProduct(this.state.products, product.id)
-    console.log('selected: ', selected)
 
     // Update Current Cart Item Quantity for Product
-    // const cart = handleUpdateToCart(this.state.cart, product.id, product.quantity)
-    // console.log('cart: ', cart)
+    const cart = handleUpdateToCart(this.state.products, this.state.cart)    
 
-    // Update Total Amounts
+    
+    // Update Total Cost/Amounts
+    const totalCost = handleUpToTotalCost(cart)
     // const totalAmount = handleUpdateToSubTotal(selected)
     
     // Update Total Items
-    // const totalItems = handleUpdateToTotalItems(cart)
+    const totalItems = handleUpdateToTotalItems(this.state.products)
  
     // Update Alert
     // const alert = handleUpdateToAlert(cart.ccItem, this.state.alert)
-    // console.log('updating alert... ', alert)
 
     this.setState({
       // alert: alert,
-      // cart: cart
-      // totalItems: totalItems,
-      // totalAmount: (totalAmount).toFixed(2)
+      cart: cart,
+      totalItems: totalItems,
+      totalAmount: (totalCost).toFixed(2)
     })
   }
 
@@ -101,6 +100,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('this.state.cart: ', this.state.cart)
     return (
       <div className="App">
         <Header
