@@ -9,6 +9,7 @@ import {
   handleUpdateToProducts,
   handleUpdateToCart,
   handleUpToTotalCost,
+  handlePromoCheck,
   handleUpdateToTotalItems,
   handleUpdateToAlert, 
 } from './helpers'
@@ -67,11 +68,13 @@ class App extends Component {
     const selected = getSelectedProduct(this.state.products, product.id)
 
     // Update Current Cart Item Quantity for Product
-    const cart = handleUpdateToCart(this.state.products, this.state.cart)    
+    let cart = handleUpdateToCart(this.state.products, this.state.cart)
 
-    
+    // Check for Promos
+    cart = handlePromoCheck(this.state.products, cart, totalCost)
+
     // Update Total Cost/Amounts
-    const totalCost = handleUpToTotalCost(cart)
+    let totalCost = handleUpToTotalCost(cart)
     // const totalAmount = handleUpdateToSubTotal(selected)
     
     // Update Total Items

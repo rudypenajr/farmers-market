@@ -1,3 +1,10 @@
+import _ from 'lodash'
+import {
+  isSelfPromoSubsequentFree,
+  isSelfPromoSubsequentDiscounted,
+  otherPromos
+} from './promos'
+
 // Check
 export const getSelectedProduct = (cart, id) => {
   return cart.find(obj => obj.id === id)
@@ -46,6 +53,42 @@ export const handleUpToTotalCost = (cart) => {
   }
   
   return total
+}
+
+// TODO: Refactor not following immuntiablility
+export const handlePromoCheck = (products, cart) => {
+  // Update Cart First
+  let clonedCart = _.clone(cart)
+  let isInCart, isPromoInCart, isSelfPromo, isPromoForChildren
+  
+  products.forEach(p => {
+    isInCart = (clonedCart.hasOwnProperty(p.id) && clonedCart[p.id].length > 0)
+    isPromoInCart = (p.promo && clonedCart.hasOwnProperty(p.promo.dependent) && clonedCart[p.promo.dependent].length > 0)
+    isSelfPromo = (p.promo && p.id === p.promo.dependent)
+    isPromoForChildren = (p.promo && p.promo.children)
+    
+    if (isInCart && isPromoInCart) {
+      if (isSelfPromo) { // i.e. Coffee & Applies
+
+        if (isPromoForChildren) {
+          // i.e. Applies -- Still check if quanity meets limits
+          if (p.quantity >= p.promo.limit) {
+            clonedCart[p.id] = isSelfPromoSubsequentDiscounted(p)
+          }
+        } else {
+          // i.e. Coffee
+          clonedCart[p.id] = isSelfPromoSubsequentFree(p)
+        }
+
+      } else { // i.e. Chai & Milk
+        
+        clonedCart[p.promo.dependent] = otherPromos(p, clonedCart[p.promo.dependent])
+
+      }
+    }
+  })
+  
+  return clonedCart
 }
 
 // export const handleUpdateToSubTotal = (selected) => {
