@@ -58,13 +58,14 @@ class App extends Component {
 
   updateQuantity(id, qty){
     let products = handleUpdateToProducts(this.state.products, id, qty)
-
+    debugger;
     this.setState({
       products: products
     })
   }
 
   handleAddToCart(product) {
+    debugger;
     // Get Selected product
     const selected = getSelectedProduct(this.state.products, product.id)
 

@@ -30,10 +30,17 @@ class Counter extends Component {
       return
     }
 
+    // this.setState({
+    //   quantity: update
+    // })
+    
     let update = this.state.quantity - 1
-    this.setState({
+    this.setState(prevState => ({
       quantity: update
-    })
+    }), function(){
+      this.props.updateQuantity(this.props.id, this.state.quantity);
+      this.props.displayAlert(this.props)
+    });
   }
 
   render() {

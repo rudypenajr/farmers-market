@@ -12,6 +12,7 @@ export const getSelectedProduct = (cart, id) => {
 
 // Check
 export const handleUpdateToProducts = (products, id, quantity) => {
+  debugger;
   return [...products].map(obj => {
     if (obj.id === id) {
       obj.quantity = quantity
@@ -26,12 +27,17 @@ export const handleUpdateToCart = (products, cart) => {
   products.forEach(p => {
     const id = p.id
     const quantity = p.quantity
-    
+
     let selected = cart[id]
+
+    debugger;
     if (quantity > selected.length) {
       for (let i = 0; i <= (quantity - 1); i++) {
         cart[id].push(p)
       }
+    } else { // probable decrement
+      // cart[id].slice(0, quantity)
+      cart[id].splice(0, quantity)
     }
   });
   
