@@ -32,7 +32,7 @@ class Checkout extends Component {
   render() {
     let { totalAmount } = this.props
     let { taxes } = this.state
-    let total = (Number(totalAmount) + taxes)
+    let total = (Number(totalAmount) + taxes).toFixed(2)
     let title = this.props.totalItems ? 'Shopping Cart' : 'Your Shopping Cart is Empty.'
     let segments = this.renderTableRow()
 

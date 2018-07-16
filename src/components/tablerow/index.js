@@ -17,6 +17,16 @@ const Row = function(props) {
 const PromoRow = function(props) {
   const { data } = props
   let promo = data.promo[0]
+  
+  if (data.promo.length === 1) {
+    promo = data.promo[0]
+  } else {
+    for (let i = 0; i < data.promo.length; i++) {
+      let iPromo = data.promo[i]
+      let promoPrice = data.price - data.discount
+      if (promoPrice === data.discount) promo = iPromo
+    }
+  }
 
   return (
     <tr className="promo-row">
