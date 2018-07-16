@@ -3,11 +3,10 @@ import './segment.css';
 
 const Row = function(props) {
   const { data } = props
-  const promoEnabled = data.promoEnabled
-  let promoClass = promoEnabled ? 'has__promo' : ''
+  let promoClass = data.promoEnabled ? 'has__promo' : ''
 
   return (
-    <tr className={promoClass}>
+    <tr className={`${promoClass}`}>
       <td>{data.name}</td>
       <td>&nbsp;</td>
       <td>{data.price.toFixed(2)}</td>
@@ -17,11 +16,13 @@ const Row = function(props) {
 
 const PromoRow = function(props) {
   const { data } = props
+  let promo = data.promo[0]
+
   return (
-    <tr class="promo-row">
+    <tr className="promo-row">
       <td>Promo:</td>
-      <td>{data.promo.name}</td>
-      <td>&nbsp;</td>
+      <td>{promo.name}</td>
+      <td>-{data.discount.toFixed(2)}</td>
     </tr>
   )
 }
@@ -32,9 +33,6 @@ class Segment extends Component {
     
     console.log('data: ', this.props.data)
     this.props.data.forEach((o, i) => {
-      const promoEnabled = o.promoEnabled
-      // console.log('i: ', i)
-      // console.log('o: ', o)
       list.push(<Row key={i} data={o} />)
 
       if (o.promoEnabled) {
@@ -56,14 +54,5 @@ class Segment extends Component {
     )
   }
 }
-
-{/* 
-<div className="shop__segment">
-<p className="shop__cart__product">
-<span className="shop__cart__product-name">{main.name}</span>
-,<span className="shop__cart__product-qty">qty: {main.quantity}</span>  
-</p>
-</div> 
-*/}
 
 export default Segment

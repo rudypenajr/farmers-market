@@ -21,32 +21,3 @@
     margin-top: 20px;
     text-align: right;
 }
-
-.shop__checkout table {
-    width: 100%;
-}
-
-.shop__checkout table thead td,
-.shop__checkout table tbody td {
-    text-align: center;
-    width: 33%;
-}
-
-.shop__checkout thead td:first-child,
-.shop__checkout thead td:last-child {
-    border-bottom: 1px solid #000;
-}
-
-.shop__checkout thead td:first-child,
-.shop__checkout tbody td:first-child {
-    text-align: left;
-}
-
-.shop__checkout thead td:last-child,
-.shop__checkout tbody td:last-child {
-    text-align: right;
-}
-
-.shop__checkout table tr.promo-row td {
-    font-size: 12px;
-}

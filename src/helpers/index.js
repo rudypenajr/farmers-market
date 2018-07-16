@@ -40,7 +40,12 @@ export const handleUpdateToCart = (products, cart) => {
 
 export const handleUpToTotalCost = (cart) => {
   let total = 0
-  const mapping = o => o.price
+  const mapping = (o) => {
+    if (o.discount && o.discount > 0) {
+      return (o.price - o.discount)
+    }
+    return o.price
+  }
   const reducer = (acc, curr) => acc + curr;
   
   for (var id in cart) {
@@ -59,30 +64,51 @@ export const handleUpToTotalCost = (cart) => {
 export const handlePromoCheck = (products, cart) => {
   // Update Cart First
   let clonedCart = _.clone(cart)
-  let isInCart, isPromoInCart, isSelfPromo, isPromoForChildren
+  let promo, isInCart, isPromoInCart, isSelfPromo, isPromoForChildren
   
   products.forEach(p => {
+    // Sanity Checks
     isInCart = (clonedCart.hasOwnProperty(p.id) && clonedCart[p.id].length > 0)
-    isPromoInCart = (p.promo && clonedCart.hasOwnProperty(p.promo.dependent) && clonedCart[p.promo.dependent].length > 0)
-    isSelfPromo = (p.promo && p.id === p.promo.dependent)
-    isPromoForChildren = (p.promo && p.promo.children)
+    isPromoInCart = false
+
+    promo = p.promo
+    if (promo instanceof Array) {
+      for (let i = 0; i < promo.length; i++) {
+        promo = promo[i]
+        isPromoInCart = (promo && clonedCart.hasOwnProperty(promo.dependent) && clonedCart[promo.dependent].length > 0)
+        // debugger;
+        // TODO: Refactor - Need way to set 'active' promo such that APPLES has two possible promos
+        // NEED IMMUTABILITY HERE
+        if (i > 0 && isPromoInCart) {
+          console.log('::::::::::::::::::::::::::')
+          promo.active = true
+          p.promo[i - 1] = false
+        }
+
+        if (isPromoInCart) break; 
+      }
+    }
+    // debugger;
+    isSelfPromo = (promo && p.id === promo.dependent)
+    isPromoForChildren = (promo && promo.children)
     
+    // debugger;
     if (isInCart && isPromoInCart) {
       if (isSelfPromo) { // i.e. Coffee & Applies
 
         if (isPromoForChildren) {
           // i.e. Applies -- Still check if quanity meets limits
-          if (p.quantity >= p.promo.limit) {
-            clonedCart[p.id] = isSelfPromoSubsequentDiscounted(p)
+          if (p.quantity >= promo.limit) {
+            clonedCart[p.id] = isSelfPromoSubsequentDiscounted(p, promo)
           }
         } else {
           // i.e. Coffee
-          clonedCart[p.id] = isSelfPromoSubsequentFree(p)
+          clonedCart[p.id] = isSelfPromoSubsequentFree(p, promo)
         }
 
-      } else { // i.e. Chai & Milk
+      } else { // i.e. Chai & Milk | Oatmeal & Apples
         
-        clonedCart[p.promo.dependent] = otherPromos(p, clonedCart[p.promo.dependent])
+        clonedCart[promo.dependent] = otherPromos(p, clonedCart[promo.dependent], promo)
 
       }
     }
