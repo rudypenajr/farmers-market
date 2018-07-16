@@ -12,14 +12,41 @@
     width: 80%;
 }
 
-.shop__column {    
-    /* flex: 1 1 auto; */
-    flex: 1 1 60%;
-}
-
 .shop__checkout {
     border: 1px solid #07A0C3;
     border-radius: 5px;
     flex: 1 1 30%;
     padding: 10px;
+    
+    margin-top: 20px;
+    text-align: right;
+}
+
+.shop__checkout table {
+    width: 100%;
+}
+
+.shop__checkout table thead td,
+.shop__checkout table tbody td {
+    text-align: center;
+    width: 33%;
+}
+
+.shop__checkout thead td:first-child,
+.shop__checkout thead td:last-child {
+    border-bottom: 1px solid #000;
+}
+
+.shop__checkout thead td:first-child,
+.shop__checkout tbody td:first-child {
+    text-align: left;
+}
+
+.shop__checkout thead td:last-child,
+.shop__checkout tbody td:last-child {
+    text-align: right;
+}
+
+.shop__checkout table tr.promo-row td {
+    font-size: 12px;
 }

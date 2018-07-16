@@ -4,6 +4,7 @@ const data = [
     name: 'Chai',
     price: 3.11,
     promo: {
+      name: 'CHMK',
       dependent: 'MK1',
       limit: 1,
       price: 0.00,
@@ -15,11 +16,14 @@ const data = [
     id: 'AP1',
     name: 'Apples',
     price: 6.00,
+    discount: 0,
     promo: {
+      name: 'APPL',
       dependent: 'AP1',
       limit: 3,
       price: 4.50,
-      children: true
+      children: true,
+
     },
     alert: 'APPL -- If you buy 3 or more bags of Apples, the price drops to $4.50.'
   },
@@ -28,6 +32,7 @@ const data = [
     name: 'Coffee',
     price: 11.23,
     promo: {
+      name: 'BOGO',
       dependent: 'CF1',
       limit: 1,
       price: 0.00,
@@ -45,6 +50,7 @@ const data = [
     name: 'Oatmeal',
     price: 3.69,
     promo: {
+      name: 'APOM',
       dependent: 'AP1',
       limit: 1,
       price: 3.00,

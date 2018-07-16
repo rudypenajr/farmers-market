@@ -1,34 +1,27 @@
 import React, { Component } from 'react';
-import Segment from '../segment'
+import TableRow from '../tablerow'
+import './checkout.css';
 
 class Checkout extends Component {
   constructor(props) {
     super(props)
 
-    console.log('props::::', props)
     this.state = {
       taxes: 3.25,
       total: 0.00
     }
   }
 
-  // componentDidMount() {
-  //   let { totalAmount } = this.props    
-  //   this.setState({
-  //     total: totalAmount + taxes
-  //   })
-  // }
-
-  renderSegments() {
-    console.log('render segment :::: this.props', this.props)
+  renderTableRow() {
     const { cart } = this.props
     let list = []
 
+    console.log('iterating through keys in cart...')
     for (var key in cart) {
       let vals = cart[key]
       if (vals.length > 0) {
         list.push(
-          <Segment key={key} data={vals} />
+          <TableRow key={key} data={vals} />
         )
       }
     }
@@ -40,14 +33,27 @@ class Checkout extends Component {
     let { totalAmount } = this.props
     let { taxes } = this.state
     let total = (Number(totalAmount) + taxes)
-    console.log('::::::::', totalAmount, taxes, total)
     let title = this.props.totalItems ? 'Shopping Cart' : 'Your Shopping Cart is Empty.'
-    let segments = this.renderSegments()
+    let segments = this.renderTableRow()
 
     return (
       <div className="shop__column shop__checkout">
         <h2>{title}</h2>
-        {segments}
+        {this.props.totalItems > 0 && 
+          <div className="shop__cart__itemized">
+            <table>
+              <thead>
+                <tr>
+                  <td>Item</td>
+                  <td>&nbsp;</td>
+                  <td>Price</td>
+                </tr>
+              </thead>
+              {segments}
+            </table>
+          </div>
+        }
+
         {this.props.totalItems > 0 && 
           <div className="shop__cart__cost">
             <p className="shop__cart__sub-total">

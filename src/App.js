@@ -44,7 +44,8 @@ class App extends Component {
       data.forEach((o) => {
         initialCart.push({
           ...o,
-          quantity: 0
+          quantity: 0,
+          promoEnabled: false
         })
       })
       

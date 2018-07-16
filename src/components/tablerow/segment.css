@@ -1,31 +1,3 @@
-.shop__checkout {
-    margin-top: 20px;
-    text-align: right;
-}
-
-.shop__cart__product-name,
-.shop__cart__product-qty {
-    margin: 0;
-    padding: 0;
-}
-
-.shop__cart__product {
-    margin-bottom: 10px;
-}
-
-.shop__cart__product span {
-    display: inline-block;
-}
-
-.shop__cart__product-name {
-    font-weight: bold;
-    width: 40%;
-}
-
-.shop__cart__product-qty {
-    margin-left: 4px;
-}
-
 .shop__checkout button {
     /* 
     background: #086788;
