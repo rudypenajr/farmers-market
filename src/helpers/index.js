@@ -35,7 +35,7 @@ export const handleUpdateToCart = (products, cart) => {
       for (let i = 0; i <= (quantity - 1); i++) {
         cart[id].push(p)
       }
-    } else { // probable decrement
+    } else if (quantity < selected.length) { // probable decrement
       // cart[id].slice(0, quantity)
       cart[id].splice(0, quantity)
     }
