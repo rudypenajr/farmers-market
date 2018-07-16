@@ -31,7 +31,6 @@ class Segment extends Component {
   renderTableRows(data) {
     let list = []
     
-    console.log('data: ', this.props.data)
     this.props.data.forEach((o, i) => {
       list.push(<Row key={i} data={o} />)
 

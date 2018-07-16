@@ -13,16 +13,14 @@ class Button extends Component {
 
   _handleAddToCart(e) {
     e.preventDefault()
-
     this.props.handleAddToCart(this.props)
+    
 
-    this.setState({
-        isAdded: true
-      }, function(){
-        setTimeout(() => {
-          this.setState({
-            isAdded: false,
-          });
+    this.setState({ isAdded: true }, function(){
+      setTimeout(() => {
+        this.setState({
+          isAdded: false,
+        });
       }, 3500);
     });
   }

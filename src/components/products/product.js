@@ -7,7 +7,7 @@ import './products.css';
 class Product extends Component {
   render() {
     return (
-      <li key={this.props.key} id={this.props.id}>
+      <li key={this.props.id} id={this.props.id}>
         <div className="product__detail">
           <p>{this.props.name} ({`$${this.props.price}`})</p>  
         </div>
