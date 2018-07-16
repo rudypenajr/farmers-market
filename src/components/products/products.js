@@ -37,7 +37,7 @@ class Products extends Component {
     const list = this.renderItems(this.props)
     
     return (
-      <div className="shop__products">
+      <div className="shop__column shop__products">
         <ul>
             {list}
         </ul>

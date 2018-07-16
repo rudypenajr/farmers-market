@@ -1,19 +1,46 @@
-.app__header {
-    background-color: #222;
-    color: white;
+.app__header { 
+    color: #07A0C3;
+    /* height: 150px; */
+    padding-top: 60px;
+    width: 100%;
+}
+
+.app__header__wrapper {
+    border-bottom: 4px solid #F0C808;
     display: flex;
-    
-    height: 150px;
     justify-content: space-between;
+
     margin: 0 auto;
-    max-width: 960px;
-    padding: 20px;
-  }
+    padding: 0;
+    width: 80%;
+}
 
 .app__header h1 {
+    margin: 0;
+    padding: 0 0 20px;;
     text-align: left;
 }
 
-.app__header .app__mini-cart {
-    color: #fff;
+.app__mini-cart,
+.app__mini-cart p {
+    margin: 0;
+    padding: 0;
 }
+
+.app__mini-cart {
+    display: flex;
+    justify-content: space-between;
+}
+
+.app__mini-cart div:first-child {
+    /* margin-right: 10px; */
+}
+
+.app__mini-cart .app__mini-cart__content {
+    align-self: center;
+    text-align: right;
+}
+
+/* .app__mini-cart div:last-child {
+    margin-right: 10px;
+} */
