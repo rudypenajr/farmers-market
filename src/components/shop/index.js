@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Products from '../products/products.js'
+import Products from '../products'
 import Checkout from '../checkout'
 import './shop.css';
 

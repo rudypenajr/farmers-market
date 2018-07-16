@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Counter from '../counter/counter'
+import Counter from '../counter'
 import Button from '../buttons/product'
 
 import './products.css';

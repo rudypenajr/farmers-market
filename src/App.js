@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from './components/header/header'
-import Shop from './components/shop/shop'
-import Loading from './components/loading/loading'
+import Header from './components/header'
+import Shop from './components/shop'
+import Loading from './components/loading'
 // import Alert from './components/alert/alert'
 // import CheckOutButton from './components/buttons/checkout'
 import { 
