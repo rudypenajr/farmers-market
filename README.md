@@ -54,7 +54,7 @@ alert: 'Purchase a box of Chai and get milk free. (Limit 1)'
 3. Button indicator when adding to the cart.
 4. Total is correct I belive. : )
 
-#### Planned Update
+#### Planned Updates
 - [ ] After understanding the walls I have hit, I plan on restructing the components. 
 - [ ] Adjust data logic state
 - [ ] Introduce Flux or Redux
