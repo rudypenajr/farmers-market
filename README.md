@@ -11,7 +11,7 @@ Also, here is a live link to my project: [https://rudypenajr.github.io/farmers-m
  ___i.e. If 10 coffees were bought, coffee #1 would be regular price while coffees 2-10 would be free.___
  
  - [x] APPL -- If you buy 3 or more bags of Apples, the price drops to $4.50.
- ___i.e. If you buy 5 apples, all applies are $4.50. If you buy 2 applies, all applies are regular price.___
+ ___i.e. If you buy 5 apples, all apples are $4.50. If you buy 2 apples, all apples are regular price.___
 
  - [x] CHMK -- Purchase a box of Chai and get milk free. (Limit 1)
  ___i.e. If you purchase a box of chai, you get 1 milk free. All subsequent milks will be regular price.___
