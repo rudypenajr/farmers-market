@@ -51,7 +51,6 @@ export const otherPromos = (product, promoProduct, promo) => {
       
       cloned.promoEnabled = true
       // cloned.price = promo.price
-      // debugger;
       if (promo.price === 0) {
         cloned.discount = cloned.price
       } else {

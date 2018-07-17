@@ -20,7 +20,7 @@ class Products extends Component {
           name={p.name} 
           image={p.image}
           price={p.price}
-          quantity={quantity} 
+          quantity={p.quantity}
           updateQuantity={this.props.updateQuantity}
           handleAddToCart={handleAddToCart}
           displayAlert={displayAlert}

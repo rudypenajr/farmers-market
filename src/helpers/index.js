@@ -12,7 +12,7 @@ export const getSelectedProduct = (cart, id) => {
 
 // Check
 export const handleUpdateToProducts = (products, id, quantity) => {
-  debugger;
+  
   return [...products].map(obj => {
     if (obj.id === id) {
       obj.quantity = quantity
@@ -30,7 +30,7 @@ export const handleUpdateToCart = (products, cart) => {
 
     let selected = cart[id]
 
-    debugger;
+    
     if (quantity > selected.length) {
       for (let i = 0; i <= (quantity - 1); i++) {
         cart[id].push(p)
@@ -82,7 +82,7 @@ export const handlePromoCheck = (products, cart) => {
       for (let i = 0; i < promo.length; i++) {
         promo = promo[i]
         isPromoInCart = (promo && clonedCart.hasOwnProperty(promo.dependent) && clonedCart[promo.dependent].length > 0)
-        // debugger;
+        
         // TODO: Refactor - Need way to set 'active' promo such that APPLES has two possible promos
         // NEED IMMUTABILITY HERE
         if (i > 0 && isPromoInCart) {
@@ -94,11 +94,11 @@ export const handlePromoCheck = (products, cart) => {
         if (isPromoInCart) break; 
       }
     }
-    // debugger;
+    
     isSelfPromo = (promo && p.id === promo.dependent)
     isPromoForChildren = (promo && promo.children)
     
-    // debugger;
+    
     if (isInCart && isPromoInCart) {
       if (isSelfPromo) { // i.e. Coffee & Applies
 
