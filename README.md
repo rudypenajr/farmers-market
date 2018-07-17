@@ -4,6 +4,22 @@ For more detail on project, see the following: [The Farmer's Market](https://gis
 
 Also, here is a live link to my project: [https://rudypenajr.github.io/farmers-market/](https://rudypenajr.github.io/farmers-market/)
 
+
+#### Requirements
+##### Promos
+ - [x] BOGO -- Buy-One-Get-One-Free Special on Coffee. (Unlimited) 
+ ___i.e. If 10 coffees were bought, coffee #1 would be regular price while coffees 2-10 would be free.___
+ 
+ - [x] APPL -- If you buy 3 or more bags of Apples, the price drops to $4.50.
+ ___i.e. If you buy 5 apples, all applies are $4.50. If you buy 2 applies, all applies are regular price.___
+
+ - [x] CHMK -- Purchase a box of Chai and get milk free. (Limit 1)
+ ___i.e. If you purchase a box of chai, you get 1 milk free. All subsequent milks will be regular price.___
+
+ - [x] APOM -- Purchase a bag of Oatmeal and get 50% off a bag of Apples
+ ___i.e. I considered a bag of apples to be 6 apples. For example, you buy 5 applies w/ purchase of oatmeal, apples fall under APPL promo.___
+
+
 #### Development
 ##### `npm` + `yarn`
 - `npm install`
@@ -58,3 +74,4 @@ alert: 'Purchase a box of Chai and get milk free. (Limit 1)'
 - [ ] After understanding the walls I have hit, I plan on restructing the components. 
 - [ ] Adjust data logic state
 - [ ] Introduce Flux or Redux
+- [ ] Testing
